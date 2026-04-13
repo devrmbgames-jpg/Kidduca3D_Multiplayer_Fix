@@ -13,10 +13,10 @@ enum GLOBAL_TYPE_DATA {
 
 const _paths := {
 	GLOBAL_TYPE_DATA.LOBBY : "/root/Singletones/Network Globalgd/NetworkLobby_v2",
+	GLOBAL_TYPE_DATA.LOBBY_FOOTBALL : "/root/Singletones/Network Globalgd/NetworkLobbyFootball_v2",
 	GLOBAL_TYPE_DATA.RACE : "/root/RaceBase",
 	GLOBAL_TYPE_DATA.OPEN_GAME : "/root/Main/World",
 	GLOBAL_TYPE_DATA.FOOTBALL : "/root/Main/World/RoomList/Island/Levels/SportsFootball"
-	
 }
 
 enum TYPE_DATA_RACE {

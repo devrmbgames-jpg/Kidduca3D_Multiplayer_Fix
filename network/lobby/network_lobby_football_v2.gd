@@ -18,12 +18,13 @@ func _ready() -> void:
 
 ################## START LOBBY ########################
 func start_lobby() -> void :
-	Logger.log_i(self, " Start lobby")
+	Logger.log_i(self, " Start football lobby")
 	
+	# Register this lobby node so Nakama routing can deliver LOBBY_FOOTBALL packets here
 	Singletones.get_Network().api.add_object_update(get_path(), self)
 	
 	var id_peers : Array = Singletones.get_Network().api.get_peers_id()
-	var peer_id_self = Singletones.get_Network().api.get_peer_id()
+	var peer_id_self : String = Singletones.get_Network().api.get_peer_id()
 	Logger.log_i(self, " Peers ID ", id_peers)
 	Logger.log_i(self, " Peer self ID ", peer_id_self)
 	
@@ -98,7 +99,7 @@ func _is_all_load_football() -> bool :
 
 
 func leave_from_lobby() -> void :
-	Logger.log_i(self, " leave from lobby")
+	Logger.log_i(self, " Football lobby: leave from lobby")
 	for peer in _peers_node.get_children():
 		if is_instance_valid(peer):
 			peer.stop_send_data()
@@ -149,7 +150,9 @@ func get_peer_host() :
 		if is_instance_valid(peer):
 			if peer.is_host:
 				return peer
-	return peers[0]
+	if not peers.empty():
+		return peers[0]
+	return null
 
 
 func has_host_in_lobby() -> bool :
@@ -160,21 +163,19 @@ func has_host_in_lobby() -> bool :
 	return false
 
 
-
-
 func set_team(_team: int) -> void :
 	pass
 
 
 func _add_self_to_lobby(id_peer: String) -> void :
-	Logger.log_i(self, " add SELF peer ", id_peer)
+	Logger.log_i(self, " Football lobby: add SELF peer ", id_peer)
 	add_peer_to_lobby(id_peer)
 
 
 func add_peer_to_lobby(id_peer: String) -> void :
 	if _peers_node.has_node(id_peer):
 		return
-	var is_player = (Singletones.get_Network().api.get_peer_id() == id_peer)
+	var is_player : bool = (Singletones.get_Network().api.get_peer_id() == id_peer)
 	var peer = PEER_LOBBY_PKG.instance()
 	peer.name = id_peer
 	peer.peer_id = id_peer
@@ -185,37 +186,40 @@ func add_peer_to_lobby(id_peer: String) -> void :
 		_peer_self = peer
 	_peers_node.add_child(peer)
 	
-	Logger.log_i(self, " ID ", Singletones.get_Network().api.get_peer_id(), "   Add to lobby peer ID ", id_peer)
-	Logger.log_i(self, " peers in node ", _peers_node.get_children())
+	Logger.log_i(self, " Football lobby: ID ", Singletones.get_Network().api.get_peer_id(), "   Add peer ID ", id_peer)
+	Logger.log_i(self, " Football lobby: peers in node ", _peers_node.get_children())
 
 
 func del_peer_from_lobby(id_peer: String) -> void :
-	Logger.log_i(self, " del peer from lobby. Peer id ", id_peer)
+	Logger.log_i(self, " Football lobby: del peer from lobby. Peer id ", id_peer)
 	if _peers_node.has_node(id_peer):
 		var p := _peers_node.get_node(id_peer)
 		Singletones.get_Network().api.del_object_update(p.get_path())
 		p.stop_send_data()
 		p.name += "del"
 		p.queue_free()
-		Logger.log_i(self, " ID ", Singletones.get_Network().api.get_peer_id(), "   DEL node from lobby peer ID ", id_peer)
-		Logger.log_i(self, " peers in node ", _peers_node.get_children())
+		Logger.log_i(self, " Football lobby: DEL node peer ID ", id_peer)
+		Logger.log_i(self, " Football lobby: peers in node ", _peers_node.get_children())
 
 
+# Called by network_bridge_nakama when a new peer joins the football match
+func add_network_peer_to_lobby(id_peer: String) -> void :
+	add_peer_to_lobby(id_peer)
+
+
+# Called by network_bridge_nakama when a peer leaves the football match
+func del_network_peer_from_lobby(id_peer: String) -> void :
+	del_peer_from_lobby(id_peer)
+
+
+# Incoming packets routed here via NetworkConst.LOBBY_FOOTBALL op-code
 func update_network_global_data(data: Dictionary, peer_id: String) -> void :
 	var path_local : String = "PeersLobby/" + peer_id
-	var node = null
 	if has_node(path_local):
-		node = get_node(path_local)
-	if node:
+		var node = get_node(path_local)
 		if is_instance_valid(node):
 			if node.has_method("update_network_data"):
 				node.update_network_data(data)
-#			else :
-#				Logger.log_i(self, " object - ", path_local, " method is not found")
-#		else :
-#			Logger.log_i(self, " object - ", path_local, " is invalid!")
-#	else :
-#		Logger.log_i(self, " object - ", path_local, " not found!")
 
 
 func stop_send_data_all_peers() -> void :
@@ -224,6 +228,5 @@ func stop_send_data_all_peers() -> void :
 			peer.stop_send_data()
 
 
-func _NetworkLobby_tree_exiting():
+func _NetworkLobby_tree_exiting() -> void :
 	Singletones.get_Network().api.del_object_update(get_path())
-

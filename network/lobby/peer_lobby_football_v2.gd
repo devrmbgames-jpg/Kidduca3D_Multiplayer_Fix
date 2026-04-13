@@ -38,8 +38,8 @@ enum NAME_DATA {
 	PEER_NAME,
 	IDX_CHARACTER,
 	DATA_READY,
-	FINISHED_LOAD_FOOTBALL
-	
+	FINISHED_LOAD_FOOTBALL,
+
 	TEAM,
 	
 }
@@ -48,7 +48,7 @@ enum NAME_DATA {
 var _data_network_update_data := {
 	
 	NAME_DATA.TYPE : TYPE_DATA.UPDATE_DATA,
-	NAME_DATA.IS_HOST :false,
+	NAME_DATA.IS_HOST : false,
 	NAME_DATA.PEER_ID : "",
 	NAME_DATA.PEER_NAME : "",
 	NAME_DATA.IDX_CHARACTER : 0,
@@ -60,16 +60,15 @@ var _data_network_update_data := {
 
 func _ready():
 	if is_player:
-		var game_staet: GameState = Singletones.get_GameSaveCloud().game_state as GameState
+		var game_state: GameState = Singletones.get_GameSaveCloud().game_state as GameState
 		
 		is_host = Singletones.get_Network().api.is_host()
-		peer_name = game_staet.profile.get_name()
-		idx_character = game_staet.current_charscter_idx
-		id_team = game_staet.id_team
+		peer_id = Singletones.get_Network().api.get_peer_id()
+		peer_name = game_state.profile.get_name()
+		idx_character = game_state.current_charscter_idx
+		id_team = game_state.id_team
 		data_ready = true
 		_timer_update_date.start()
-	
-	#Singletones.get_Network().api.add_object_update(get_path(), self)
 
 
 func update_network_data(data: Dictionary) -> void :
@@ -93,11 +92,11 @@ func update_data_for_all() -> void :
 	_data_network_update_data[NAME_DATA.PEER_NAME] = peer_name
 	_data_network_update_data[NAME_DATA.IDX_CHARACTER] = idx_character
 	_data_network_update_data[NAME_DATA.TEAM] = id_team
-	
 	_data_network_update_data[NAME_DATA.DATA_READY] = data_ready
 	_data_network_update_data[NAME_DATA.FINISHED_LOAD_FOOTBALL] = finished_load_football
 	
-	var key : int = NetworkConst.GLOBAL_TYPE_DATA.LOBBY
+	# Use LOBBY_FOOTBALL op-code so this doesn't pollute the global LOBBY channel
+	var key : int = NetworkConst.GLOBAL_TYPE_DATA.LOBBY_FOOTBALL
 	Singletones.get_Network().api.setup_data(key, _data_network_update_data)
 	Singletones.get_Network().api.send_data_to_all()
 
@@ -114,8 +113,3 @@ func stop_send_data() -> void :
 func _on_TimerUpdateDate_timeout():
 	if is_player:
 		update_data_for_all()
-
-
-#func _on_PeerLobby_tree_exiting():
-#	pass #TODO
-#	#Singletones.get_Network().api.del_object_update(get_path())
