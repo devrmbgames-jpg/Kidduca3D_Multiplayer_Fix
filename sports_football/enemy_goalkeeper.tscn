@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://content/houses/sports_football/trap_ball.tscn" type="PackedScene" id=1]
+[ext_resource path="res://content/houses/sports_football/enemy_goalkeeper.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.425959
+height = 0.359887
+
+[node name="enemy_goalkeeper" type="KinematicBody"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="Character" parent="." instance_placeholder="res://resources/models/character_v2/full/dog/dog_player.tscn"]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.471692, 0 )
+shape = SubResource( 1 )
+
+[node name="TrapBall" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1.49012e-07, 0 )
+trap_type = 1
+
+[node name="VisibilityEnabler" type="VisibilityEnabler" parent="."]
+pause_animations = false
+freeze_bodies = false
+
+[connection signal="trap_ball" from="TrapBall" to="." method="_on_TrapBall_trap_ball"]
+[connection signal="untrap_ball" from="TrapBall" to="." method="_on_TrapBall_untrap_ball"]
+[connection signal="screen_entered" from="VisibilityEnabler" to="." method="_on_VisibilityEnabler_screen_entered"]

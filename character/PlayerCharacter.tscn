@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://content/character/character_v2.gd" type="Script" id=1]
+[ext_resource path="res://content/controller/PlayerController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/models/character_v2/full/dog/dog_player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://content/character/smiles.tscn" type="PackedScene" id=4]
+[ext_resource path="res://content/character/name_player/name_player.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, -3.63193, 0, 0, Vector2( 0.245614, 0.34 ), -1.12034, -1.12034, 0, 0, Vector2( 0.5, 0.19 ), -0.336818, -0.336818, 0, 0, Vector2( 0.741228, 0.13 ), -0.175914, -0.175914, 0, 0, Vector2( 1, 0.1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.690773
+height = 0.601524
+
+[node name="PlayerCharacter" type="KinematicBody"]
+collision_layer = 4
+collision_mask = 33554435
+script = ExtResource( 1 )
+pkg = ExtResource( 3 )
+curve_smooth_rot = SubResource( 2 )
+
+[node name="Core" type="Spatial" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.00137338, 0 )
+
+[node name="Character" parent="Core" instance_placeholder="res://resources/models/character_v2/full/base_humanoid_model/base_humanoid_model.tscn"]
+clothes_from_save = true
+
+[node name="Smiles" parent="Core" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.146616, 0 )
+
+[node name="NamePlayer" parent="Core" instance=ExtResource( 5 )]
+transform = Transform( 0.574351, 0, 0, 0, 0.574351, 0, 0, 0, 0.574351, 0, 1.76114, 0 )
+
+[node name="PlayerController" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+camera_distance = 5.0
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.988187, -0.0265944 )
+shape = SubResource( 1 )
+
+[node name="TimerSavePosition" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="RayCastDown" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0256362, 0 )
+enabled = true
+cast_to = Vector3( 0, -0.5, 0 )
+collision_mask = 16777216
+
+[node name="RayCastForwad" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.399855, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, 1.5 )
+
+[node name="TimerNetwork" type="Timer" parent="."]
+autostart = true
+
+[connection signal="animation" from="PlayerController" to="." method="_on_PlayerController_animation"]
+[connection signal="changed_direction" from="PlayerController" to="." method="_on_PlayerController_changed_direction"]
+[connection signal="jump" from="PlayerController" to="." method="_on_PlayerController_jump"]
+[connection signal="jump_forward" from="PlayerController" to="." method="_on_PlayerController_jump_forward"]
+[connection signal="timeout" from="TimerSavePosition" to="." method="_on_TimerSavePosition_timeout"]
+[connection signal="timeout" from="TimerNetwork" to="." method="_on_TimerNetwork_timeout"]

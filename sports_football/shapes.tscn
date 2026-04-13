@@ -1,0 +1,56 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://resources/sfx/game sound/shapes/shape_rectangle_en.wav" type="AudioStream" id=1]
+[ext_resource path="res://resources/sfx/game sound/shapes/shape_star_en.wav" type="AudioStream" id=2]
+[ext_resource path="res://resources/sfx/game sound/shapes/shape_rhomb_en.wav" type="AudioStream" id=3]
+[ext_resource path="res://resources/sfx/game sound/shapes/shape_square_en.wav" type="AudioStream" id=4]
+[ext_resource path="res://resources/sfx/game sound/shapes/shape_triangle_en.wav" type="AudioStream" id=5]
+[ext_resource path="res://resources/sfx/game sound/shapes/shape_heart_en.wav" type="AudioStream" id=6]
+[ext_resource path="res://resources/sfx/game sound/shapes/shape_circle_en.wav" type="AudioStream" id=7]
+[ext_resource path="res://resources/sfx/game sound/shapes/shape_hexagon_en.wav" type="AudioStream" id=8]
+[ext_resource path="res://resources/sfx/game sound/shapes/shape_pentagon_en.wav" type="AudioStream" id=9]
+[ext_resource path="res://resources/sfx/game sound/shapes/shape_oval_en.wav" type="AudioStream" id=10]
+[ext_resource path="res://content/houses/sports_football/shapes.gd" type="Script" id=11]
+
+[node name="Shapes" type="Node"]
+script = ExtResource( 11 )
+
+[node name="AudioCircle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+bus = "Dialog"
+
+[node name="AudioRect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Dialog"
+
+[node name="AudioSquare" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Dialog"
+
+[node name="AudioTringle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Dialog"
+
+[node name="AudioHexagon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "Dialog"
+
+[node name="AudioRombh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Dialog"
+
+[node name="AudioStar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Dialog"
+
+[node name="AudioHeart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "Dialog"
+
+[node name="AudioPenta" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+bus = "Dialog"
+
+[node name="AudioOval" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+bus = "Dialog"

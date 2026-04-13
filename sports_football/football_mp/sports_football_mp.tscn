@@ -1,0 +1,1425 @@
+[gd_scene load_steps=65 format=2]
+
+[ext_resource path="res://resources/models/kenney_assets/survivekit/signpost.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://resources/models/kenney_assets/naturekit/terrain.meshlib" type="MeshLibrary" id=2]
+[ext_resource path="res://resources/textures/football/football_star.png" type="Texture" id=3]
+[ext_resource path="res://content/houses/sports_football/football_mp/sports_football_mp.gd" type="Script" id=4]
+[ext_resource path="res://content/houses/sports_football/trap_ball.tscn" type="PackedScene" id=5]
+[ext_resource path="res://content/houses/sports_football/shapes.tscn" type="PackedScene" id=6]
+[ext_resource path="res://content/houses/sports_football/football_mp/ball_mp.tscn" type="PackedScene" id=7]
+[ext_resource path="res://content/houses/sports_football/gate.tscn" type="PackedScene" id=8]
+[ext_resource path="res://resources/textures/football/football_lightning.png" type="Texture" id=9]
+[ext_resource path="res://content/houses/sports_football/enemy_goalkeeper.tscn" type="PackedScene" id=10]
+[ext_resource path="res://resources/theme/style_panel_frame_blue_round.tres" type="StyleBox" id=11]
+[ext_resource path="res://resources/theme/font/sport_football_score.tres" type="DynamicFont" id=12]
+[ext_resource path="res://resources/theme/style_panel_frame_red_round.tres" type="StyleBox" id=13]
+[ext_resource path="res://content/houses/sports_football/Shape.tscn" type="PackedScene" id=14]
+[ext_resource path="res://resources/models/houses/sports/football_field.mesh" type="ArrayMesh" id=15]
+[ext_resource path="res://resources/models/kenney_assets/survivekit/bedrollPacked.mesh" type="ArrayMesh" id=16]
+[ext_resource path="res://resources/shaders/horizontal_z_radiance.gdshader" type="Shader" id=17]
+[ext_resource path="res://resources/ui/icons/football_kick_icon.png" type="Texture" id=18]
+[ext_resource path="res://resources/theme/font/parent_control_content.tres" type="DynamicFont" id=27]
+[ext_resource path="res://resources/ui/icons/kenney/keyboard_space_outline.png" type="Texture" id=28]
+[ext_resource path="res://resources/models/character_v2/full/pig/pig_player.tscn" type="PackedScene" id=29]
+[ext_resource path="res://resources/sfx/effects/studion_voice.ogg" type="AudioStream" id=44]
+[ext_resource path="res://resources/character_icons/dog.png" type="Texture" id=45]
+[ext_resource path="res://resources/character_icons/rabbit_2.png" type="Texture" id=46]
+[ext_resource path="res://content/houses/sports_football/characters.tscn" type="PackedScene" id=47]
+[ext_resource path="res://resources/ui/hint/Hand.png" type="Texture" id=48]
+[ext_resource path="res://resources/ui/icons/ball_hit.png" type="Texture" id=49]
+[ext_resource path="res://resources/models/character_v2/full/kitty/kitty_player.tscn" type="PackedScene" id=50]
+[ext_resource path="res://resources/sfx/game sound/interf_locale/levels/en/football/The match is over.ogg" type="AudioStream" id=51]
+[ext_resource path="res://resources/sfx/game sound/interf_locale/other/en/Wow great.ogg" type="AudioStream" id=52]
+[ext_resource path="res://resources/models/character_v2/full/heron/heron_player.tscn" type="PackedScene" id=53]
+[ext_resource path="res://resources/models/character_v2/full/dog/dog_player.tscn" type="PackedScene" id=54]
+[ext_resource path="res://resources/models/character_v2/full/panda/panda_player.tscn" type="PackedScene" id=55]
+[ext_resource path="res://resources/models/character_v2/full/rabbit/rabbit_player.tscn" type="PackedScene" id=56]
+
+[sub_resource type="PhysicsMaterial" id=6]
+
+[sub_resource type="CylinderShape" id=9]
+height = 5.6
+radius = 5.0
+
+[sub_resource type="SphereMesh" id=14]
+radius = 1.5
+height = 0.1
+is_hemisphere = true
+
+[sub_resource type="SpatialMaterial" id=15]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.913725, 0.235294, 0.235294, 0.466667 )
+
+[sub_resource type="PlaneMesh" id=32]
+
+[sub_resource type="Gradient" id=34]
+offsets = PoolRealArray( 0.0903226, 0.354839, 0.477419, 0.541936 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 0.0820313, 0, 1, 1, 0.128906, 0, 1, 1, 0.105469, 0.105469, 1 )
+
+[sub_resource type="GradientTexture" id=35]
+gradient = SubResource( 34 )
+width = 128
+
+[sub_resource type="ShaderMaterial" id=33]
+shader = ExtResource( 17 )
+shader_param/offset = 0.5
+shader_param/fade = 0.1
+shader_param/gradient = SubResource( 35 )
+
+[sub_resource type="Gradient" id=36]
+offsets = PoolRealArray( 0.0903226, 0.354839, 0.477419, 0.541936 )
+colors = PoolColorArray( 0, 0, 0, 0, 0, 0.53125, 1, 1, 0, 0.742188, 1, 1, 0.105469, 0.412964, 1, 1 )
+
+[sub_resource type="GradientTexture" id=37]
+gradient = SubResource( 36 )
+width = 128
+
+[sub_resource type="ShaderMaterial" id=38]
+shader = ExtResource( 17 )
+shader_param/offset = 0.5
+shader_param/fade = 0.1
+shader_param/gradient = SubResource( 37 )
+
+[sub_resource type="CylinderShape" id=13]
+height = 9.27139
+radius = 7.3417
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 4.40215, 15.8932, 16.2763 )
+
+[sub_resource type="BoxShape" id=10]
+extents = Vector3( 23.6208, 4.32396, 33.1369 )
+
+[sub_resource type="BoxShape" id=31]
+extents = Vector3( 15.0888, 6.37081, 8.19653 )
+
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0, 0, 0, 0.423529 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 0.54902 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0, 0, 0, 0.196078 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id=39]
+bg_color = Color( 0.968627, 0.054902, 0.054902, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id=40]
+bg_color = Color( 0, 0.368627, 1, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="Animation" id=20]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "3" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "play"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 1.2, 2.2, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "3", "2", "1", "GO" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 1, 1.2, 2, 2.2, 3, 3.2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("../..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_begin_game"
+} ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "play"
+length = 1.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.7, 1, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 0.9, 0.9 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../TextureRect:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.7, 0.9, 1.1, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1.2, 0.8 ), Vector2( 0.8, 1.2 ), Vector2( 1.2, 0.8 ), Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../TextureRect:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 1, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -417, -576 ), Vector2( -417, -537 ), Vector2( -417, -537 ), Vector2( -417, -576 ), Vector2( -417, -576 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 489.5, 507 )
+
+[sub_resource type="Animation" id=27]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Transform( -0.883316, -0.0986725, 0.458276, 0, 0.977596, 0.210489, -0.468778, 0.185928, -0.863526, 14.5562, 9.21996, -32.046 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "victory"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 4.6, 6 ),
+"transitions": PoolRealArray( 1, 1.91901, 1, 2 ),
+"update": 0,
+"values": [ Transform( -0.883316, -0.0986725, 0.458276, 0, 0.977596, 0.210489, -0.468778, 0.185928, -0.863526, 14.5562, 9.21996, -32.046 ), Transform( -0.883316, -0.0986725, 0.458276, 0, 0.977596, 0.210489, -0.468778, 0.185928, -0.863526, 14.5562, 9.21996, -32.046 ), Transform( 0.815017, -0.121965, 0.566456, 0, 0.977596, 0.210489, -0.579438, -0.171552, 0.796757, 17.0658, 9.21996, 23.31 ), Transform( 0.815017, -0.121965, 0.566456, 0, 0.977596, 0.210489, -0.579438, -0.171552, 0.796757, 17.0658, 9.21996, 23.31 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_exit_out_game"
+} ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "welcome"
+length = 5.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 3.5, 4.1 ),
+"transitions": PoolRealArray( 1, 1.91901, 1, 1 ),
+"update": 0,
+"values": [ Transform( -0.883316, -0.0986725, 0.458276, 0, 0.977596, 0.210489, -0.468778, 0.185928, -0.863526, 14.5562, 9.21996, -32.046 ), Transform( -0.883316, -0.0986725, 0.458276, 0, 0.977596, 0.210489, -0.468778, 0.185928, -0.863526, 14.5562, 9.21996, -32.046 ), Transform( 0.815017, -0.121965, 0.566456, 0, 0.977596, 0.210489, -0.579438, -0.171552, 0.796757, 17.0658, 9.21996, 23.31 ), Transform( 0.815017, -0.121965, 0.566456, 0, 0.977596, 0.210489, -0.579438, -0.171552, 0.796757, 17.0658, 9.21996, 23.31 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 4.1, 5.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_to_camera_player_tween"
+}, {
+"args": [  ],
+"method": "_play_animation_label_start"
+} ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "goal_enemy"
+length = 3.3
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.6, 2, 3.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_despawn_ball"
+}, {
+"args": [  ],
+"method": "_play_shapes_sound"
+}, {
+"args": [  ],
+"method": "_rortate_camera_player_to_spawn_ball_tween"
+} ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStudion")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 44 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "goal_friend"
+length = 3.3
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.6, 2, 3.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_despawn_ball"
+}, {
+"args": [  ],
+"method": "_play_shapes_sound"
+}, {
+"args": [  ],
+"method": "_rortate_camera_player_to_spawn_ball_tween"
+} ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStudion")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 44 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "victory_enemy"
+length = 3.3
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStudion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 44 )
+} ],
+"times": PoolRealArray( 0.4 )
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "victory_friend"
+length = 3.3
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStudion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 44 )
+} ],
+"times": PoolRealArray( 0.4 )
+}
+
+[node name="SportsFootball" type="Spatial"]
+pause_mode = 2
+script = ExtResource( 4 )
+
+[node name="Ground" type="GridMap" parent="."]
+mesh_library = ExtResource( 2 )
+physics_material = SubResource( 6 )
+cell_size = Vector3( 5, 5, 5 )
+cell_center_y = false
+cell_scale = 5.0
+data = {
+"cells": PoolIntArray( 0, 0, 655360, 1, 0, 655360, 2, 0, 655360, 3, 0, 1048576, 4, 0, 1441792, 5, 0, 1441792, 65530, 0, 1441792, 65531, 0, 1441792, 65532, 0, 1048576, 65533, 0, 1048576, 65534, 0, 1048576, 65535, 0, 655360, 65543, 0, 1441792, 131064, 0, 1441792, 0, 1, 655360, 1, 1, 655360, 2, 1, 655360, 3, 1, 1048576, 4, 1, 1441792, 65531, 1, 1441792, 65532, 1, 1048576, 65533, 1, 1048576, 65534, 1, 655360, 65535, 1, 655360, 0, 2, 655360, 1, 2, 655360, 2, 2, 655360, 3, 2, 1048576, 4, 2, 1441792, 65531, 2, 1441792, 65532, 2, 1048576, 65533, 2, 1048576, 65534, 2, 655360, 65535, 2, 655360, 0, 3, 1048576, 1, 3, 1048576, 2, 3, 1048576, 3, 3, 1048576, 4, 3, 1441792, 65531, 3, 1441792, 65532, 3, 1048576, 65533, 3, 1048576, 65534, 3, 1048576, 65535, 3, 1048576, 0, 4, 1048576, 1, 4, 1048576, 2, 4, 1048576, 3, 4, 1048576, 4, 4, 1441792, 65531, 4, 1441792, 65532, 4, 1048576, 65533, 4, 1048576, 65534, 4, 1048576, 65535, 4, 1048576, 0, 5, 1048576, 1, 5, 1048576, 2, 5, 1048576, 3, 5, 1048576, 4, 5, 1441792, 65531, 5, 1441792, 65532, 5, 1048576, 65533, 5, 1048576, 65534, 5, 1048576, 65535, 5, 1048576, 0, 6, 1441792, 1, 6, 1441792, 2, 6, 1441792, 3, 6, 1441792, 4, 6, 1441792, 65531, 6, 1441792, 65532, 6, 1441792, 65533, 6, 1441792, 65534, 6, 1441792, 65535, 6, 1441792, 0, 65529, 1441792, 1, 65529, 1441792, 2, 65529, 1441792, 3, 65529, 1441792, 4, 65529, 1441792, 65531, 65529, 1441792, 65532, 65529, 1441792, 65533, 65529, 1441792, 65534, 65529, 1441792, 65535, 65529, 1441792, 0, 65530, 1048576, 1, 65530, 1048576, 2, 65530, 1048576, 3, 65530, 1048576, 4, 65530, 1441792, 65531, 65530, 1441792, 65532, 65530, 1048576, 65533, 65530, 1048576, 65534, 65530, 1048576, 65535, 65530, 1048576, 0, 65531, 1048576, 1, 65531, 1048576, 2, 65531, 1048576, 3, 65531, 1048576, 4, 65531, 1441792, 65531, 65531, 1441792, 65532, 65531, 1048576, 65533, 65531, 1048576, 65534, 65531, 1048576, 65535, 65531, 1048576, 0, 65532, 655360, 1, 65532, 655360, 2, 65532, 655360, 3, 65532, 1048576, 4, 65532, 1441792, 65531, 65532, 1441792, 65532, 65532, 1048576, 65533, 65532, 1048576, 65534, 65532, 655360, 65535, 65532, 655360, 0, 65533, 655360, 1, 65533, 655360, 2, 65533, 655360, 3, 65533, 1048576, 4, 65533, 1441792, 65531, 65533, 1441792, 65532, 65533, 1048576, 65533, 65533, 1048576, 65534, 65533, 655360, 65535, 65533, 655360, 0, 65534, 655360, 1, 65534, 655360, 2, 65534, 655360, 3, 65534, 1048576, 4, 65534, 1441792, 65531, 65534, 1441792, 65532, 65534, 1048576, 65533, 65534, 1048576, 65534, 65534, 655360, 65535, 65534, 655360, 0, 65535, 655360, 1, 65535, 655360, 2, 65535, 655360, 3, 65535, 1048576, 4, 65535, 1441792, 5, 65535, 1441792, 65530, 65535, 1441792, 65531, 65535, 1441792, 65532, 65535, 1048576, 65533, 65535, 1048576, 65534, 65535, 655360, 65535, 65535, 655360, 65543, 65535, 1441792, 131064, 65535, 1441792 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 1, 0 )
+}
+
+[node name="Cliff" type="GridMap" parent="."]
+mesh_library = ExtResource( 2 )
+cell_size = Vector3( 5, 5, 5 )
+cell_center_y = false
+cell_scale = 5.0
+data = {
+"cells": PoolIntArray( 5, 0, 1048651, 6, 0, 655404, 65529, 0, 655404, 65530, 0, 1441867, 65532, 0, 1441896, 65543, 0, 1048651, 65544, 0, 655404, 131063, 0, 655404, 131064, 0, 1441867, 3, 1, 1441896, 5, 1, 1441826, 6, 1, 655404, 65529, 1, 655404, 65530, 1, 1441826, 65543, 1, 655394, 65544, 1, 655404, 131063, 1, 655404, 131064, 1, 655394, 5, 2, 1441826, 6, 2, 655404, 65529, 2, 655404, 65530, 2, 1441826, 65531, 2, 1441895, 65543, 2, 655394, 65544, 2, 655404, 131063, 2, 655404, 131064, 2, 655394, 5, 3, 1441826, 6, 3, 655404, 65529, 3, 655404, 65530, 3, 1441826, 65543, 3, 655394, 65544, 3, 655404, 131063, 3, 655404, 131064, 3, 655394, 5, 4, 1441826, 6, 4, 655404, 65529, 4, 655404, 65530, 4, 1441826, 65543, 4, 655394, 65544, 4, 655404, 131063, 4, 655404, 131064, 4, 655394, 4, 5, 1048679, 5, 5, 1441826, 6, 5, 655404, 65529, 5, 655404, 65530, 5, 1441826, 65531, 5, 103, 65533, 5, 1048680, 65543, 5, 655394, 65544, 5, 655404, 131063, 5, 655404, 131064, 5, 655394, 1, 6, 103, 5, 6, 1441826, 6, 6, 655404, 65529, 6, 655404, 65530, 6, 1441826, 65543, 6, 655394, 65544, 6, 655404, 131063, 6, 655404, 131064, 6, 655394, 0, 7, 1441826, 1, 7, 1441826, 2, 7, 1441826, 3, 7, 1441826, 4, 7, 1441826, 5, 7, 1441826, 6, 7, 655404, 65529, 7, 655404, 65530, 7, 1441826, 65531, 7, 1441826, 65532, 7, 1441826, 65533, 7, 1441826, 65534, 7, 1441826, 65535, 7, 1441826, 65543, 7, 655394, 65544, 7, 655404, 131063, 7, 655404, 131064, 7, 655394, 0, 8, 655404, 1, 8, 655404, 2, 8, 655404, 3, 8, 655404, 4, 8, 655404, 5, 8, 655404, 6, 8, 655404, 65529, 8, 655404, 65530, 8, 655404, 65531, 8, 655404, 65532, 8, 655404, 65533, 8, 655404, 65534, 8, 655404, 65535, 8, 655404, 65543, 8, 655394, 65544, 8, 655404, 131063, 8, 655404, 131064, 8, 655394, 65536, 9, 655394, 65537, 9, 655394, 65538, 9, 655394, 65539, 9, 655394, 65540, 9, 655394, 65541, 9, 655394, 65542, 9, 655394, 65543, 9, 655394, 65544, 9, 655404, 131063, 9, 655404, 131064, 9, 655394, 131065, 9, 655394, 131066, 9, 655394, 131067, 9, 655394, 131068, 9, 655394, 131069, 9, 655394, 131070, 9, 655394, 131071, 9, 655394, 65536, 10, 655404, 65537, 10, 655404, 65538, 10, 655404, 65539, 10, 655404, 65540, 10, 655404, 65541, 10, 655404, 65542, 10, 655404, 65543, 10, 655404, 65544, 10, 655404, 131063, 10, 655404, 131064, 10, 655404, 131065, 10, 655404, 131066, 10, 655404, 131067, 10, 655404, 131068, 10, 655404, 131069, 10, 655404, 131070, 10, 655404, 131071, 10, 655404, 65536, 65525, 655404, 65537, 65525, 655404, 65538, 65525, 655404, 65539, 65525, 655404, 65540, 65525, 655404, 65541, 65525, 655404, 65542, 65525, 655404, 65543, 65525, 655404, 65544, 65525, 655404, 131063, 65525, 655404, 131064, 65525, 655404, 131065, 65525, 655404, 131066, 65525, 655404, 131067, 65525, 655404, 131068, 65525, 655404, 131069, 65525, 655404, 131070, 65525, 655404, 131071, 65525, 655404, 65536, 65526, 655394, 65537, 65526, 655394, 65538, 65526, 655394, 65539, 65526, 655394, 65540, 65526, 655394, 65541, 65526, 655394, 65542, 65526, 655394, 65543, 65526, 655394, 65544, 65526, 655404, 131063, 65526, 655404, 131064, 65526, 655394, 131065, 65526, 655394, 131066, 65526, 655394, 131067, 65526, 655394, 131068, 65526, 655394, 131069, 65526, 655394, 131070, 65526, 655394, 131071, 65526, 655394, 0, 65527, 655404, 1, 65527, 655404, 2, 65527, 655404, 3, 65527, 655404, 4, 65527, 655404, 5, 65527, 655404, 6, 65527, 655404, 65529, 65527, 655404, 65530, 65527, 655404, 65531, 65527, 655404, 65532, 65527, 655404, 65533, 65527, 655404, 65534, 65527, 655404, 65535, 65527, 655404, 65543, 65527, 655394, 65544, 65527, 655404, 131063, 65527, 655404, 131064, 65527, 655394, 0, 65528, 1441826, 1, 65528, 1441826, 2, 65528, 1441826, 3, 65528, 1441826, 4, 65528, 1441826, 5, 65528, 1441826, 6, 65528, 655404, 65529, 65528, 655404, 65530, 65528, 1441826, 65531, 65528, 1441826, 65532, 65528, 1441826, 65533, 65528, 1441826, 65534, 65528, 1441826, 65535, 65528, 1441826, 65543, 65528, 655394, 65544, 65528, 655404, 131063, 65528, 655404, 131064, 65528, 655394, 5, 65529, 1441826, 6, 65529, 655404, 65529, 65529, 655404, 65530, 65529, 1441826, 65534, 65529, 655463, 65543, 65529, 655394, 65544, 65529, 655404, 131063, 65529, 655404, 131064, 65529, 655394, 2, 65530, 104, 5, 65530, 1441826, 6, 65530, 655404, 65529, 65530, 655404, 65530, 65530, 1441826, 65532, 65530, 104, 65543, 65530, 655394, 65544, 65530, 655404, 131063, 65530, 655404, 131064, 65530, 655394, 5, 65531, 1441826, 6, 65531, 655404, 65529, 65531, 655404, 65530, 65531, 1441826, 65543, 65531, 655394, 65544, 65531, 655404, 131063, 65531, 655404, 131064, 65531, 655394, 4, 65532, 1441895, 5, 65532, 1441826, 6, 65532, 655404, 65529, 65532, 655404, 65530, 65532, 1441826, 65531, 65532, 655463, 65543, 65532, 655394, 65544, 65532, 655404, 131063, 65532, 655404, 131064, 65532, 655394, 5, 65533, 1441826, 6, 65533, 655404, 65529, 65533, 655404, 65530, 65533, 1441826, 65543, 65533, 655394, 65544, 65533, 655404, 131063, 65533, 655404, 131064, 65533, 655394, 5, 65534, 1441826, 6, 65534, 655404, 65529, 65534, 655404, 65530, 65534, 1441826, 65543, 65534, 655394, 65544, 65534, 655404, 131063, 65534, 655404, 131064, 65534, 655394, 4, 65535, 655463, 5, 65535, 1048651, 6, 65535, 655404, 65529, 65535, 655404, 65530, 65535, 1441867, 65543, 65535, 1048651, 65544, 65535, 655404, 131063, 65535, 655404, 131064, 65535, 1441867 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 2, 0 )
+}
+
+[node name="Fences" type="GridMap" parent="."]
+mesh_library = ExtResource( 2 )
+cell_size = Vector3( 5, 5, 5 )
+cell_center_y = false
+cell_scale = 5.0
+data = {
+"cells": PoolIntArray( 196613, 0, 655396, 196614, 0, 655396, 196615, 0, 655396, 196616, 0, 655396, 262135, 0, 655396, 262136, 0, 655396, 262137, 0, 655396, 262138, 0, 655396, 5, 1, 655418, 65530, 1, 1441850, 65541, 1, 655418, 131066, 1, 1441850, 131077, 1, 655418, 131080, 1, 655418, 196599, 1, 1441850, 196602, 1, 1441850, 196613, 1, 655396, 196614, 1, 655396, 196615, 1, 655396, 196616, 1, 655396, 262135, 1, 655396, 262136, 1, 655396, 262137, 1, 655396, 262138, 1, 655396, 196613, 2, 655396, 196614, 2, 655396, 196615, 2, 655396, 196616, 2, 655396, 262135, 2, 655396, 262136, 2, 655396, 262137, 2, 655396, 262138, 2, 655396, 196613, 3, 655396, 196614, 3, 655396, 196615, 3, 655396, 196616, 3, 655396, 262135, 3, 655396, 262136, 3, 655396, 262137, 3, 655396, 262138, 3, 655396, 196613, 4, 655396, 196614, 4, 655396, 196615, 4, 655396, 196616, 4, 655396, 262135, 4, 655396, 262136, 4, 655396, 262137, 4, 655396, 262138, 4, 655396, 196613, 5, 655396, 196614, 5, 655396, 196615, 5, 655396, 196616, 5, 655396, 262135, 5, 655396, 262136, 5, 655396, 262137, 5, 655396, 262138, 5, 655396, 196613, 6, 655396, 196614, 6, 655396, 196615, 6, 655396, 196616, 6, 655396, 262135, 6, 655396, 262136, 6, 655396, 262137, 6, 655396, 262138, 6, 655396, 5, 7, 1048634, 65530, 7, 58, 65541, 7, 1048634, 131066, 7, 58, 131077, 7, 1048634, 196602, 7, 58, 196608, 7, 655396, 196609, 7, 655396, 196610, 7, 655396, 196611, 7, 655396, 196612, 7, 655396, 196613, 7, 655396, 196614, 7, 655396, 196615, 7, 655396, 196616, 7, 655396, 262135, 7, 655396, 262136, 7, 655396, 262137, 7, 655396, 262138, 7, 655396, 262139, 7, 655396, 262140, 7, 655396, 262141, 7, 655396, 262142, 7, 655396, 262143, 7, 655396, 65537, 8, 58, 131070, 8, 1048634, 131073, 8, 58, 196606, 8, 1048634, 196608, 8, 655396, 196609, 8, 655396, 196610, 8, 655396, 196611, 8, 655396, 196612, 8, 655396, 196613, 8, 655396, 196614, 8, 655396, 196615, 8, 655396, 196616, 8, 655396, 262135, 8, 655396, 262136, 8, 655396, 262137, 8, 655396, 262138, 8, 655396, 262139, 8, 655396, 262140, 8, 655396, 262141, 8, 655396, 262142, 8, 655396, 262143, 8, 655396, 196608, 9, 655396, 196609, 9, 655396, 196610, 9, 655396, 196611, 9, 655396, 196612, 9, 655396, 196613, 9, 655396, 196614, 9, 655396, 196615, 9, 655396, 196616, 9, 655396, 262135, 9, 655396, 262136, 9, 655396, 262137, 9, 655396, 262138, 9, 655396, 262139, 9, 655396, 262140, 9, 655396, 262141, 9, 655396, 262142, 9, 655396, 262143, 9, 655396, 131073, 10, 58, 131080, 10, 1048634, 196599, 10, 58, 196606, 10, 1048634, 196608, 10, 655396, 196609, 10, 655396, 196610, 10, 655396, 196611, 10, 655396, 196612, 10, 655396, 196613, 10, 655396, 196614, 10, 655396, 196615, 10, 655396, 196616, 10, 655396, 262135, 10, 655396, 262136, 10, 655396, 262137, 10, 655396, 262138, 10, 655396, 262139, 10, 655396, 262140, 10, 655396, 262141, 10, 655396, 262142, 10, 655396, 262143, 10, 655396, 131073, 65525, 1441850, 131080, 65525, 655418, 196599, 65525, 1441850, 196606, 65525, 655418, 196608, 65525, 655396, 196609, 65525, 655396, 196610, 65525, 655396, 196611, 65525, 655396, 196612, 65525, 655396, 196613, 65525, 655396, 196614, 65525, 655396, 196615, 65525, 655396, 196616, 65525, 655396, 262135, 65525, 655396, 262136, 65525, 655396, 262137, 65525, 655396, 262138, 65525, 655396, 262139, 65525, 655396, 262140, 65525, 655396, 262141, 65525, 655396, 262142, 65525, 655396, 262143, 65525, 655396, 196608, 65526, 655396, 196609, 65526, 655396, 196610, 65526, 655396, 196611, 65526, 655396, 196612, 65526, 655396, 196613, 65526, 655396, 196614, 65526, 655396, 196615, 65526, 655396, 196616, 65526, 655396, 262135, 65526, 655396, 262136, 65526, 655396, 262137, 65526, 655396, 262138, 65526, 655396, 262139, 65526, 655396, 262140, 65526, 655396, 262141, 65526, 655396, 262142, 65526, 655396, 262143, 65526, 655396, 65537, 65527, 1441850, 131070, 65527, 655418, 131073, 65527, 1441850, 196606, 65527, 655418, 196608, 65527, 655396, 196609, 65527, 655396, 196610, 65527, 655396, 196611, 65527, 655396, 196612, 65527, 655396, 196613, 65527, 655396, 196614, 65527, 655396, 196615, 65527, 655396, 196616, 65527, 655396, 262135, 65527, 655396, 262136, 65527, 655396, 262137, 65527, 655396, 262138, 65527, 655396, 262139, 65527, 655396, 262140, 65527, 655396, 262141, 65527, 655396, 262142, 65527, 655396, 262143, 65527, 655396, 5, 65528, 655418, 65530, 65528, 1441850, 65541, 65528, 655418, 131066, 65528, 1441850, 131077, 65528, 655418, 196602, 65528, 1441850, 196608, 65528, 655396, 196609, 65528, 655396, 196610, 65528, 655396, 196611, 65528, 655396, 196612, 65528, 655396, 196613, 65528, 655396, 196614, 65528, 655396, 196615, 65528, 655396, 196616, 65528, 655396, 262135, 65528, 655396, 262136, 65528, 655396, 262137, 65528, 655396, 262138, 65528, 655396, 262139, 65528, 655396, 262140, 65528, 655396, 262141, 65528, 655396, 262142, 65528, 655396, 262143, 65528, 655396, 196613, 65529, 655396, 196614, 65529, 655396, 196615, 65529, 655396, 196616, 65529, 655396, 262135, 65529, 655396, 262136, 65529, 655396, 262137, 65529, 655396, 262138, 65529, 655396, 196613, 65530, 655396, 196614, 65530, 655396, 196615, 65530, 655396, 196616, 65530, 655396, 262135, 65530, 655396, 262136, 65530, 655396, 262137, 65530, 655396, 262138, 65530, 655396, 196613, 65531, 655396, 196614, 65531, 655396, 196615, 65531, 655396, 196616, 65531, 655396, 262135, 65531, 655396, 262136, 65531, 655396, 262137, 65531, 655396, 262138, 65531, 655396, 196613, 65532, 655396, 196614, 65532, 655396, 196615, 65532, 655396, 196616, 65532, 655396, 262135, 65532, 655396, 262136, 65532, 655396, 262137, 65532, 655396, 262138, 65532, 655396, 196613, 65533, 655396, 196614, 65533, 655396, 196615, 65533, 655396, 196616, 65533, 655396, 262135, 65533, 655396, 262136, 65533, 655396, 262137, 65533, 655396, 262138, 65533, 655396, 5, 65534, 1048634, 65530, 65534, 58, 65541, 65534, 1048634, 131066, 65534, 58, 131077, 65534, 1048634, 131080, 65534, 1048634, 196599, 65534, 58, 196602, 65534, 58, 196613, 65534, 655396, 196614, 65534, 655396, 196615, 65534, 655396, 196616, 65534, 655396, 262135, 65534, 655396, 262136, 65534, 655396, 262137, 65534, 655396, 262138, 65534, 655396, 196613, 65535, 655396, 196614, 65535, 655396, 196615, 65535, 655396, 196616, 65535, 655396, 262135, 65535, 655396, 262136, 65535, 655396, 262137, 65535, 655396, 262138, 65535, 655396 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 2, 0 )
+}
+
+[node name="football_field" type="MeshInstance" parent="."]
+transform = Transform( -1.72226e-07, 0, 3.94007, 0, 3.97395, 0, -3.97395, 0, -1.73707e-07, 0, 0.05, 0 )
+cast_shadow = 0
+mesh = ExtResource( 15 )
+
+[node name="PosCharacterStart" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.229645, 6.20701 )
+
+[node name="PosStartTeamRed" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.229645, 11.258 )
+
+[node name="PosStartTeamBlue" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23, -11.258 )
+
+[node name="PosSpawnBall" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9607, 0 )
+
+[node name="BallMP" parent="." instance=ExtResource( 7 )]
+pause_mode = 2
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730066, -0.042518 )
+
+[node name="AreasAllocPlNet" type="Spatial" parent="."]
+
+[node name="TrapBallPlayer" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.37512, 0 )
+collision_layer = 8320
+collision_mask = 8320
+ball_path = NodePath("../BallMP")
+trap_type = 2
+is_friend = true
+
+[node name="AreaAllocationPlayer" type="Area" parent="TrapBallPlayer"]
+collision_layer = 4096
+collision_mask = 4096
+
+[node name="CollisionShape" type="CollisionShape" parent="TrapBallPlayer/AreaAllocationPlayer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670093, 0 )
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="TrapBallPlayer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.313892, 0 )
+mesh = SubResource( 14 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 15 )
+
+[node name="Enemys" type="Spatial" parent="."]
+
+[node name="Friends" type="Spatial" parent="."]
+
+[node name="GoalKeepers" type="Spatial" parent="."]
+
+[node name="goalkeeper_friend" parent="GoalKeepers" instance=ExtResource( 10 )]
+transform = Transform( -2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 0.0450578, 0.264692, 23.4485 )
+character = ExtResource( 54 )
+ball_path = NodePath("../../BallMP")
+spawn_ball_path = NodePath("../../PosSpawnBall")
+target_1_path = NodePath("../../TargetsGoalKeeper/TargetFriend_1")
+target_2_path = NodePath("../../TargetsGoalKeeper/TargetFriend_2")
+is_friend = true
+
+[node name="goalkeeper_enemy" parent="GoalKeepers" instance=ExtResource( 10 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.19028, 0.264691, -23.6852 )
+character = ExtResource( 54 )
+ball_path = NodePath("../../BallMP")
+spawn_ball_path = NodePath("../../PosSpawnBall")
+target_1_path = NodePath("../../TargetsGoalKeeper/TargetEnemy_1")
+target_2_path = NodePath("../../TargetsGoalKeeper/TargetEnemy_2")
+
+[node name="TargetsGoalKeeper" type="Spatial" parent="."]
+
+[node name="TargetFriend_1" type="Position3D" parent="TargetsGoalKeeper"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.26738, 0.213955, 23.4667 )
+
+[node name="TargetFriend_2" type="Position3D" parent="TargetsGoalKeeper"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24399, 0.213955, 23.5207 )
+
+[node name="TargetEnemy_1" type="Position3D" parent="TargetsGoalKeeper"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.27097, 0.213955, -23.3354 )
+
+[node name="TargetEnemy_2" type="Position3D" parent="TargetsGoalKeeper"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.26738, 0.213955, -23.3354 )
+
+[node name="PosesSpawnRed" type="Spatial" parent="."]
+
+[node name="Pos_1" type="Position3D" parent="PosesSpawnRed"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.229687, 4.49611 )
+
+[node name="Pos_4" type="Position3D" parent="PosesSpawnRed"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.229687, 14.4961 )
+
+[node name="Pos_2" type="Position3D" parent="PosesSpawnRed"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.05812, 0.229687, 10.1749 )
+
+[node name="Pos_3" type="Position3D" parent="PosesSpawnRed"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.98351, 0.229687, 10.1749 )
+
+[node name="PosesSpawnBlue" type="Spatial" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="Pos_1" type="Position3D" parent="PosesSpawnBlue"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.229687, 4.49611 )
+
+[node name="Pos_4" type="Position3D" parent="PosesSpawnBlue"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.74228e-07, 0.229687, 14.4961 )
+
+[node name="Pos_2" type="Position3D" parent="PosesSpawnBlue"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.05812, 0.229687, 10.1749 )
+
+[node name="Pos_3" type="Position3D" parent="PosesSpawnBlue"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.98351, 0.229687, 10.1749 )
+
+[node name="Gates" type="Spatial" parent="."]
+
+[node name="PosGoalPlayer" type="Position3D" parent="Gates"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.217225, -26.6181 )
+
+[node name="PosGoalPlayerBlue" type="Position3D" parent="Gates"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.217225, -26.6181 )
+
+[node name="PosGoalPlayerRed" type="Position3D" parent="Gates"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.217, 26.618 )
+
+[node name="PosGateEnemy" type="Position3D" parent="Gates"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24.8422 )
+
+[node name="PosGateFriend" type="Position3D" parent="Gates"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24.812 )
+
+[node name="GateFriend" parent="Gates" instance=ExtResource( 8 )]
+transform = Transform( -5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 0, -2.13378, 24.6961 )
+is_friend = true
+
+[node name="MeshInstance" type="MeshInstance" parent="Gates/GateFriend"]
+transform = Transform( 1, -8.74228e-08, 8.74228e-08, 8.74228e-08, -4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 4.13024e-10, 0.20729, -0.00472498 )
+mesh = SubResource( 32 )
+material/0 = SubResource( 33 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Gates/GateFriend/MeshInstance"]
+transform = Transform( 1, 0, -7.10543e-15, 0, 1, 3.55271e-15, -7.45412e-22, -3.55271e-15, 1, -7.10543e-14, -1.10835, 4.47035e-08 )
+mesh = SubResource( 32 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 33 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Gates/GateFriend/MeshInstance"]
+transform = Transform( -6.3679e-09, 1, -1.31134e-07, -0.534, -1.19249e-08, 4.37114e-08, 2.33419e-08, 1.31134e-07, 1, 1, -0.57995, 1.04308e-07 )
+mesh = SubResource( 32 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 33 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="Gates/GateFriend/MeshInstance"]
+transform = Transform( -6.36789e-09, 1, -1.31134e-07, -0.534, -1.19249e-08, 4.37114e-08, 2.33419e-08, 1.31134e-07, 1, -1, -0.57995, -7.45058e-08 )
+mesh = SubResource( 32 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 33 )
+
+[node name="GateEnemy" parent="Gates" instance=ExtResource( 8 )]
+transform = Transform( 5, 0, 8.74228e-07, 0, 5, 0, -8.74228e-07, 0, 5, 0, -2.13378, -24.6312 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Gates/GateEnemy"]
+transform = Transform( 1, -8.74228e-08, 8.74228e-08, 8.74228e-08, -4.37114e-08, -1, 8.74229e-08, 1, -4.37114e-08, 3.74462e-09, 0.20729, -0.0214167 )
+mesh = SubResource( 32 )
+skeleton = NodePath("../../GateFriend")
+material/0 = SubResource( 38 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Gates/GateEnemy/MeshInstance2"]
+transform = Transform( 1, 0, -3.28405e-15, -1.42109e-14, 1, 0, 1.09268e-14, -3.55271e-15, 1, -7.96234e-10, -1.11513, 4.47035e-08 )
+mesh = SubResource( 32 )
+skeleton = NodePath("../../../GateFriend")
+material/0 = SubResource( 38 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Gates/GateEnemy/MeshInstance2"]
+transform = Transform( -6.3679e-09, 1, -1.31134e-07, -0.534, -1.19249e-08, 4.37114e-08, 2.33419e-08, 1.31134e-07, 1, 1, -0.57995, 1.04308e-07 )
+mesh = SubResource( 32 )
+skeleton = NodePath("../../../GateFriend")
+material/0 = SubResource( 38 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="Gates/GateEnemy/MeshInstance2"]
+transform = Transform( -6.36789e-09, 1, -1.31134e-07, -0.534, -1.19249e-08, 4.37114e-08, 2.33419e-08, 1.31134e-07, 1, -1, -0.57995, -7.45058e-08 )
+mesh = SubResource( 32 )
+skeleton = NodePath("../../../GateFriend")
+material/0 = SubResource( 38 )
+
+[node name="AreaAllocationBallFriend" type="Area" parent="Gates"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24.6889 )
+collision_layer = 32768
+collision_mask = 32768
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Gates/AreaAllocationBallFriend"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670093, 0.0445061 )
+shape = SubResource( 13 )
+
+[node name="AreaAllocationBallEnemy" type="Area" parent="Gates"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.0015 )
+collision_layer = 32768
+collision_mask = 32768
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Gates/AreaAllocationBallEnemy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670093, 0.0445061 )
+shape = SubResource( 13 )
+
+[node name="Decoration" type="Spatial" parent="."]
+
+[node name="signpost" type="MeshInstance" parent="Decoration"]
+transform = Transform( 2.20782e-07, 0, -1.68364, 0, 1.68364, 0, 1.68364, 0, 2.20782e-07, 30.8443, 4.96895, -8.14366 )
+mesh = ExtResource( 1 )
+
+[node name="signpost2" type="MeshInstance" parent="Decoration"]
+transform = Transform( -3.6797e-07, 0, 1.68364, 0, 1.68364, 0, -1.68364, 0, -3.6797e-07, -30.9429, 4.96895, -8.14366 )
+mesh = ExtResource( 1 )
+
+[node name="bedrollPacked" type="MeshInstance" parent="Decoration"]
+transform = Transform( 0.669125, 0, 3.58028, 0, 3.64227, 0, -3.58028, 0, 0.669125, -22.3413, 0.0296688, -30.578 )
+mesh = ExtResource( 16 )
+
+[node name="bedrollPacked2" type="MeshInstance" parent="Decoration"]
+transform = Transform( 0.669125, 0, 3.58028, 0, 3.64227, 0, -3.58028, 0, 0.669125, -20.8279, 0.0296688, -31.6631 )
+mesh = ExtResource( 16 )
+
+[node name="bedrollPacked3" type="MeshInstance" parent="Decoration"]
+transform = Transform( 0.115169, 0, 3.64045, 0, 3.64227, 0, -3.64045, 0, 0.115169, -18.8885, 0.0296688, -31.9815 )
+mesh = ExtResource( 16 )
+
+[node name="bedrollPacked4" type="MeshInstance" parent="Decoration"]
+transform = Transform( 3.61834, 0, 0.416801, 0, 3.64227, 0, -0.416801, 0, 3.61834, -20.0482, 1.28861, -32.8271 )
+mesh = ExtResource( 16 )
+
+[node name="bedrollPacked5" type="MeshInstance" parent="Decoration"]
+transform = Transform( 3.63859, -0.000213002, -0.163644, 0.000342303, 3.64227, 0.00287113, 0.163644, -0.00288361, 3.63859, -21.3323, 1.28861, -31.1346 )
+mesh = ExtResource( 16 )
+
+[node name="Fans" type="Spatial" parent="."]
+
+[node name="dog9" parent="Fans" instance=ExtResource( 54 )]
+transform = Transform( -8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -27.0053, 2.57677, 10.2517 )
+random_clothes = true
+
+[node name="heron8" parent="Fans" instance=ExtResource( 53 )]
+transform = Transform( -0.287987, 0, 1.97916, 0, 2, 0, -1.97916, 0, -0.287987, -31.1272, 5.18702, 17.8548 )
+random_clothes = true
+
+[node name="panda7" parent="Fans" instance=ExtResource( 55 )]
+transform = Transform( 0.760107, 0, 1.84993, 0, 2, 0, -1.84993, 0, 0.760107, -27.2205, 2.53114, -22.1456 )
+random_clothes = true
+
+[node name="pig4" parent="Fans" instance=ExtResource( 29 )]
+transform = Transform( 0.329613, 0, 1.97265, 0, 2, 0, -1.97265, 0, 0.329613, -31.1403, 5.0062, -11.9587 )
+random_clothes = true
+
+[node name="rabbit9" parent="Fans" instance=ExtResource( 56 )]
+transform = Transform( -1.12503, 0, 1.65357, 0, 2, 0, -1.65357, 0, -1.12503, -26.1005, 3.05635, 24.5952 )
+random_clothes = true
+
+[node name="kitty7" parent="Fans" instance=ExtResource( 50 )]
+transform = Transform( 0.139409, 0, -1.99514, 0, 2, 0, 1.99514, 0, 0.139409, 30.8826, 5.46137, -11.5737 )
+random_clothes = true
+
+[node name="panda8" parent="Fans" instance=ExtResource( 55 )]
+transform = Transform( 0.506503, 0, -1.9348, 0, 2, 0, 1.9348, 0, 0.506503, 26.736, 2.56325, -18.5352 )
+random_clothes = true
+
+[node name="dog10" parent="Fans" instance=ExtResource( 54 )]
+transform = Transform( 1.36098, 0, -1.46551, 0, 2, 0, 1.46551, 0, 1.36098, 29.0145, -4.14999, -39.0037 )
+random_clothes = true
+
+[node name="heron9" parent="Fans" instance=ExtResource( 53 )]
+transform = Transform( -1.07218, 0, -1.68832, 0, 2, 0, 1.68832, 0, -1.07218, 31.3443, 5.17072, 10.4072 )
+random_clothes = true
+
+[node name="rabbit10" parent="Fans" instance=ExtResource( 56 )]
+transform = Transform( -1.07218, 0, -1.68832, 0, 2, 0, 1.68832, 0, -1.07218, 26.6926, 3.08642, 24.7636 )
+random_clothes = true
+
+[node name="pig5" parent="Fans" instance=ExtResource( 29 )]
+transform = Transform( 1.26484, 0, -1.54925, 0, 2, 0, 1.54925, 0, 1.26484, 26.5103, 2.4701, -28.3322 )
+random_clothes = true
+
+[node name="dog11" parent="Fans" instance=ExtResource( 54 )]
+transform = Transform( -0.798877, 0, -1.83352, 0, 2, 0, 1.83352, 0, -0.798877, 30.7239, 5.14707, 19.7269 )
+random_clothes = true
+
+[node name="kitty8" parent="Fans" instance=ExtResource( 50 )]
+transform = Transform( -0.798877, 0, -1.83352, 0, 2, 0, 1.83352, 0, -0.798877, 25.9646, 3.01367, 14.3934 )
+random_clothes = true
+
+[node name="panda9" parent="Fans" instance=ExtResource( 55 )]
+transform = Transform( -0.798877, 0, -1.83352, 0, 2, 0, 1.83352, 0, -0.798877, 32.8267, 4.97056, 33.4662 )
+random_clothes = true
+
+[node name="rabbit11" parent="Fans" instance=ExtResource( 56 )]
+transform = Transform( -0.798877, 0, -1.83352, 0, 2, 0, 1.83352, 0, -0.798877, 36.5819, 7.92623, 13.7176 )
+random_clothes = true
+
+[node name="rabbit12" parent="Fans" instance=ExtResource( 56 )]
+transform = Transform( 0.44813, 0, -1.94915, 0, 2, 0, 1.94915, 0, 0.44813, 36.5778, 7.99484, -22.6381 )
+random_clothes = true
+
+[node name="rabbit13" parent="Fans" instance=ExtResource( 56 )]
+transform = Transform( 1.99297, 0, -0.167498, 0, 2, 0, 0.167498, 0, 1.99297, -14.8429, 7.91883, -46.4294 )
+random_clothes = true
+
+[node name="rabbit14" parent="Fans" instance=ExtResource( 56 )]
+transform = Transform( 1.15087, 0, 1.63569, 0, 2, 0, -1.63569, 0, 1.15087, -31.5965, 5.36794, -30.8797 )
+random_clothes = true
+
+[node name="heron10" parent="Fans" instance=ExtResource( 53 )]
+transform = Transform( 1.10891, 0, -1.66443, 0, 2, 0, 1.66443, 0, 1.10891, 30.813, 5.43868, -24.8702 )
+random_clothes = true
+
+[node name="heron11" parent="Fans" instance=ExtResource( 53 )]
+transform = Transform( -1.88743, 0, -0.661524, 0, 2, 0, 0.661524, 0, -1.88743, 15.1928, 5.1323, 41.7355 )
+random_clothes = true
+
+[node name="heron12" parent="Fans" instance=ExtResource( 53 )]
+transform = Transform( -0.83253, 0, -1.81849, 0, 2, 0, 1.81849, 0, -0.83253, 36.5943, 7.75761, 33.6584 )
+random_clothes = true
+
+[node name="kitty9" parent="Fans" instance=ExtResource( 50 )]
+transform = Transform( -0.841027, 0, 1.81457, 0, 2, 0, -1.81457, 0, -0.841027, -37.5454, 8.0083, 35.9987 )
+random_clothes = true
+
+[node name="kitty10" parent="Fans" instance=ExtResource( 50 )]
+transform = Transform( 0.57783, 0, 1.91471, 0, 2, 0, -1.91471, 0, 0.57783, -37.2927, 8.01303, -17.7298 )
+random_clothes = true
+
+[node name="kitty11" parent="Fans" instance=ExtResource( 50 )]
+transform = Transform( 1.88882, 0, -0.657535, 0, 2, 0, 0.657535, 0, 1.88882, 19.9623, 5.49075, -41.6676 )
+random_clothes = true
+
+[node name="dog12" parent="Fans" instance=ExtResource( 54 )]
+transform = Transform( 1.88882, 0, -0.657535, 0, 2, 0, 0.657535, 0, 1.88882, 11.5541, 7.61411, -46.6995 )
+random_clothes = true
+
+[node name="dog13" parent="Fans" instance=ExtResource( 54 )]
+transform = Transform( 0.30197, 0, -1.97707, 0, 2, 0, 1.97707, 0, 0.30197, 26.8805, 2.65058, -8.78058 )
+random_clothes = true
+
+[node name="dog14" parent="Fans" instance=ExtResource( 54 )]
+transform = Transform( 1.01375, 0, 1.72404, 0, 2, 0, -1.72404, 0, 1.01375, -36.0454, 7.61226, -33.6746 )
+random_clothes = true
+
+[node name="panda10" parent="Fans" instance=ExtResource( 55 )]
+transform = Transform( -1.8497, 0, 0.760656, 0, 2, 0, -0.760656, 0, -1.8497, -18.1992, 7.5, 46.3215 )
+random_clothes = true
+
+[node name="panda11" parent="Fans" instance=ExtResource( 55 )]
+transform = Transform( 1.90046, 0, 0.623112, 0, 2, 0, -0.623112, 0, 1.90046, -20.6299, 4.9789, -41.8633 )
+random_clothes = true
+
+[node name="panda12" parent="Fans" instance=ExtResource( 55 )]
+transform = Transform( -0.341383, 0, 1.97065, 0, 2, 0, -1.97065, 0, -0.341383, -36.3428, 7.48146, 10.9914 )
+random_clothes = true
+
+[node name="heron13" parent="Fans" instance=ExtResource( 53 )]
+transform = Transform( -1.84947, 0, 0.761237, 0, 2, 0, -0.761237, 0, -1.84947, -16.2674, 2.76181, 36.7556 )
+random_clothes = true
+
+[node name="kitty12" parent="Fans" instance=ExtResource( 50 )]
+transform = Transform( -1.53346, 0, -1.28394, 0, 2, 0, 1.28394, 0, -1.53346, 26.3696, 2.98399, 36.5972 )
+random_clothes = true
+
+[node name="heron14" parent="Fans" instance=ExtResource( 53 )]
+transform = Transform( 0.51585, 0, 1.93233, 0, 2, 0, -1.93233, 0, 0.51585, -26.8647, 2.7854, -10.0505 )
+random_clothes = true
+
+[node name="dog15" parent="Fans" instance=ExtResource( 54 )]
+transform = Transform( 0.507652, 0, -1.9345, 0, 2, 0, 1.9345, 0, 0.507652, 36.9009, 7.6462, -12.3513 )
+random_clothes = true
+
+[node name="rabbit15" parent="Fans" instance=ExtResource( 56 )]
+transform = Transform( 0.507652, 0, -1.9345, 0, 2, 0, 1.9345, 0, 0.507652, 36.1532, 8.03175, -41.1062 )
+random_clothes = true
+
+[node name="rabbit16" parent="Fans" instance=ExtResource( 56 )]
+transform = Transform( 0.46139, 0, 1.94605, 0, 2, 0, -1.94605, 0, 0.46139, -31.8277, 5.59339, -21.2769 )
+random_clothes = true
+
+[node name="pig6" parent="Fans" instance=ExtResource( 29 )]
+transform = Transform( -1.08793, 0, 1.67822, 0, 2, 0, -1.67822, 0, -1.08793, -32.1589, 5.07851, 33.2654 )
+random_clothes = true
+
+[node name="dog16" parent="Fans" instance=ExtResource( 54 )]
+transform = Transform( -0.767173, 0, 1.84701, 0, 2, 0, -1.84701, 0, -0.767173, -36.4079, 7.64468, 24.854 )
+random_clothes = true
+
+[node name="Walls" type="StaticBody" parent="."]
+visible = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2451, 14.8885, -13.357 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2451, 14.8885, 13.1827 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2563, 14.8885, -13.357 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2563, 14.8885, 13.1827 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21.1083, 14.8885, 29.2562 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape12" type="CollisionShape" parent="Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21.2687, 14.8885, 29.2562 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape13" type="CollisionShape" parent="Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0.315931, 0.948782, -1.38098e-08, 0.948782, -0.315931, -4.14726e-08, 0.00900269, 0.0172806, 34.6601 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape14" type="CollisionShape" parent="Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.00900269, 20.699, 29.2562 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="Walls"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.2687, 14.8885, -29.2724 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape15" type="CollisionShape" parent="Walls"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21.1083, 14.8885, -29.2724 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape16" type="CollisionShape" parent="Walls"]
+transform = Transform( -4.37114e-08, 0, 1, 0.315632, 0.948882, 1.37967e-08, -0.948882, 0.315632, -4.14769e-08, 0.151333, 0.922962, -34.3031 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape17" type="CollisionShape" parent="Walls"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.151333, 20.699, -29.2724 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape11" type="CollisionShape" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0552578, -4.40188, 0.282068 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape18" type="CollisionShape" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0552578, -4.40188, 120.72 )
+shape = SubResource( 10 )
+
+[node name="Area" type="Area" parent="." groups=["AREA_WALLS"]]
+visible = false
+collision_layer = 4096
+collision_mask = 4096
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2451, 14.8885, -13.357 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2451, 14.8885, 13.1827 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2563, 14.8885, -13.357 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2563, 14.8885, 13.1827 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="Area"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0585251, 14.8885, 29.2562 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="Area"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0585277, 14.8885, -29.2481 )
+shape = SubResource( 7 )
+
+[node name="AreaDialog" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.3798 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="AreaDialog"]
+shape = SubResource( 31 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreShapes" type="Control" parent="UI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -18.0
+margin_top = -25.0
+margin_right = 22.0
+margin_bottom = 15.0
+
+[node name="PanelFrame" type="Panel" parent="UI/ScoreShapes"]
+margin_left = -726.0
+margin_top = 34.0
+margin_right = 767.0
+margin_bottom = 213.0
+custom_styles/panel = SubResource( 28 )
+
+[node name="PanelFrameRed" type="Panel" parent="UI/ScoreShapes"]
+margin_left = -548.0
+margin_top = 41.0
+margin_right = 11.0
+margin_bottom = 205.0
+custom_styles/panel = ExtResource( 13 )
+
+[node name="PanelFrameBlue" type="Panel" parent="UI/ScoreShapes"]
+margin_left = 24.0
+margin_top = 41.0
+margin_right = 583.0
+margin_bottom = 205.0
+custom_styles/panel = ExtResource( 11 )
+
+[node name="ScoreBackFriend" type="Control" parent="UI/ScoreShapes"]
+unique_name_in_owner = true
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="1" type="Panel" parent="UI/ScoreShapes/ScoreBackFriend"]
+margin_left = -133.0
+margin_top = 60.0
+margin_right = -7.0
+margin_bottom = 186.0
+custom_styles/panel = SubResource( 17 )
+
+[node name="2" type="Panel" parent="UI/ScoreShapes/ScoreBackFriend"]
+margin_left = -265.0
+margin_top = 60.0
+margin_right = -139.0
+margin_bottom = 186.0
+custom_styles/panel = SubResource( 17 )
+
+[node name="3" type="Panel" parent="UI/ScoreShapes/ScoreBackFriend"]
+margin_left = -397.0
+margin_top = 60.0
+margin_right = -271.0
+margin_bottom = 186.0
+custom_styles/panel = SubResource( 17 )
+
+[node name="4" type="Panel" parent="UI/ScoreShapes/ScoreBackFriend"]
+margin_left = -529.0
+margin_top = 60.0
+margin_right = -403.0
+margin_bottom = 186.0
+custom_styles/panel = SubResource( 17 )
+
+[node name="ScoreBackEnemy" type="Control" parent="UI/ScoreShapes"]
+unique_name_in_owner = true
+margin_left = 573.0
+margin_right = 613.0
+margin_bottom = 40.0
+
+[node name="1" type="Panel" parent="UI/ScoreShapes/ScoreBackEnemy"]
+margin_left = -529.0
+margin_top = 60.0
+margin_right = -403.0
+margin_bottom = 186.0
+custom_styles/panel = SubResource( 17 )
+
+[node name="2" type="Panel" parent="UI/ScoreShapes/ScoreBackEnemy"]
+margin_left = -397.0
+margin_top = 60.0
+margin_right = -271.0
+margin_bottom = 186.0
+custom_styles/panel = SubResource( 17 )
+
+[node name="3" type="Panel" parent="UI/ScoreShapes/ScoreBackEnemy"]
+margin_left = -265.0
+margin_top = 60.0
+margin_right = -139.0
+margin_bottom = 186.0
+custom_styles/panel = SubResource( 17 )
+
+[node name="4" type="Panel" parent="UI/ScoreShapes/ScoreBackEnemy"]
+margin_left = -133.0
+margin_top = 60.0
+margin_right = -7.0
+margin_bottom = 186.0
+custom_styles/panel = SubResource( 17 )
+
+[node name="ScoreShapesFriend" type="Control" parent="UI/ScoreShapes"]
+unique_name_in_owner = true
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="1" parent="UI/ScoreShapes/ScoreShapesFriend" instance=ExtResource( 14 )]
+margin_left = -124.0
+margin_top = -133.0
+margin_right = -90.0
+margin_bottom = -98.0
+
+[node name="2" parent="UI/ScoreShapes/ScoreShapesFriend" instance=ExtResource( 14 )]
+margin_left = -256.0
+margin_top = -133.0
+margin_right = -222.0
+margin_bottom = -98.0
+
+[node name="3" parent="UI/ScoreShapes/ScoreShapesFriend" instance=ExtResource( 14 )]
+margin_left = -388.0
+margin_top = -133.0
+margin_right = -354.0
+margin_bottom = -98.0
+
+[node name="4" parent="UI/ScoreShapes/ScoreShapesFriend" instance=ExtResource( 14 )]
+margin_left = -520.0
+margin_top = -133.0
+margin_right = -486.0
+margin_bottom = -98.0
+
+[node name="ScoreShapesEnemy" type="Control" parent="UI/ScoreShapes"]
+unique_name_in_owner = true
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="1" parent="UI/ScoreShapes/ScoreShapesEnemy" instance=ExtResource( 14 )]
+margin_left = 53.0
+margin_top = -133.0
+margin_right = 87.0
+margin_bottom = -98.0
+
+[node name="2" parent="UI/ScoreShapes/ScoreShapesEnemy" instance=ExtResource( 14 )]
+margin_left = 185.0
+margin_top = -133.0
+margin_right = 219.0
+margin_bottom = -98.0
+
+[node name="3" parent="UI/ScoreShapes/ScoreShapesEnemy" instance=ExtResource( 14 )]
+margin_left = 317.0
+margin_top = -133.0
+margin_right = 351.0
+margin_bottom = -98.0
+
+[node name="4" parent="UI/ScoreShapes/ScoreShapesEnemy" instance=ExtResource( 14 )]
+margin_left = 448.0
+margin_top = -133.0
+margin_right = 482.0
+margin_bottom = -98.0
+
+[node name="LabelScore" type="Label" parent="UI/ScoreShapes"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -114.0
+margin_top = 82.0
+margin_right = 112.0
+margin_bottom = 198.0
+custom_fonts/font = ExtResource( 12 )
+text = ":"
+align = 1
+
+[node name="TextureRectEnemy" type="TextureRect" parent="UI/ScoreShapes"]
+unique_name_in_owner = true
+visible = false
+margin_left = 571.0
+margin_top = 46.0
+margin_right = 728.0
+margin_bottom = 203.0
+texture = ExtResource( 45 )
+stretch_mode = 6
+
+[node name="TextureRectFriend" type="TextureRect" parent="UI/ScoreShapes"]
+unique_name_in_owner = true
+visible = false
+margin_left = -691.0
+margin_top = 46.0
+margin_right = -534.0
+margin_bottom = 203.0
+texture = ExtResource( 46 )
+stretch_mode = 6
+
+[node name="TextureRectFriendMark" type="Panel" parent="UI/ScoreShapes"]
+margin_left = -702.0
+margin_top = 60.0
+margin_right = -569.0
+margin_bottom = 188.0
+custom_styles/panel = SubResource( 39 )
+
+[node name="TextureRectFriendMark2" type="TextureRect" parent="UI/ScoreShapes/TextureRectFriendMark"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_top = -7.0
+margin_right = 4.0
+margin_bottom = 2.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="TextureRectEnemyMark" type="Panel" parent="UI/ScoreShapes"]
+margin_left = 608.0
+margin_top = 60.0
+margin_right = 741.0
+margin_bottom = 188.0
+custom_styles/panel = SubResource( 40 )
+
+[node name="TextureRectEnemyMark2" type="TextureRect" parent="UI/ScoreShapes/TextureRectEnemyMark"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_bottom = 8.0
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
+
+[node name="LabelFriend" type="Label" parent="UI/ScoreShapes"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.862745 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -553.0
+margin_top = 208.0
+margin_right = -37.0
+margin_bottom = 324.0
+rect_scale = Vector2( 0.7, 0.7 )
+custom_fonts/font = ExtResource( 12 )
+text = "Home"
+
+[node name="LabelEnemy" type="Label" parent="UI/ScoreShapes"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.862745 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 181.0
+margin_top = 206.0
+margin_right = 699.0
+margin_bottom = 322.0
+rect_scale = Vector2( 0.7, 0.7 )
+custom_fonts/font = ExtResource( 12 )
+text = "Visitors"
+align = 2
+
+[node name="LabelStart" type="Label" parent="UI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -81.0
+margin_top = -75.0
+margin_right = 81.0
+margin_bottom = 75.0
+rect_pivot_offset = Vector2( 89, 73 )
+custom_fonts/font = ExtResource( 27 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="AnimationPlayerLabelStart" type="AnimationPlayer" parent="UI/LabelStart"]
+unique_name_in_owner = true
+anims/RESET = SubResource( 20 )
+anims/play = SubResource( 21 )
+
+[node name="HintMobile" type="Control" parent="UI"]
+unique_name_in_owner = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 47.0
+margin_top = 41.0
+margin_right = 87.0
+margin_bottom = 81.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/HintMobile" groups=["INSIDE_GAME", "MOBILE", "UI_HINT"]]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.705882 )
+margin_left = -417.0
+margin_top = -576.0
+margin_right = -179.0
+margin_bottom = -340.0
+rect_pivot_offset = Vector2( 119, 118 )
+mouse_filter = 2
+texture = ExtResource( 49 )
+expand = true
+
+[node name="TexRectHintHandShoot" type="TextureRect" parent="UI/HintMobile" groups=["INSIDE_GAME", "MOBILE", "UI_HINT"]]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -304.0
+margin_top = -267.0
+margin_right = -51.0
+margin_bottom = -39.0
+rect_rotation = 161.468
+mouse_filter = 2
+texture = ExtResource( 48 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/HintMobile/TexRectHintHandShoot"]
+autoplay = "play"
+anims/play = SubResource( 29 )
+
+[node name="AreaHintMobile" type="Control" parent="UI"]
+unique_name_in_owner = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 47.0
+margin_top = 41.0
+margin_right = 87.0
+margin_bottom = 81.0
+mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="UI/AreaHintMobile" groups=["INSIDE_GAME", "MOBILE", "UI_HINT"]]
+position = Vector2( -222, -184 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/AreaHintMobile/Area2D"]
+position = Vector2( -294.5, -336 )
+shape = SubResource( 30 )
+
+[node name="HintPC" type="Control" parent="UI" groups=["INSIDE_GAME", "PC", "UI_HINT"]]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 47.0
+margin_top = 21.0
+margin_right = 87.0
+margin_bottom = 61.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/HintPC"]
+self_modulate = Color( 1, 1, 1, 0.705882 )
+margin_left = -384.0
+margin_top = -233.0
+margin_right = -241.0
+margin_bottom = -91.0
+rect_pivot_offset = Vector2( 119, 118 )
+texture = ExtResource( 18 )
+expand = true
+
+[node name="TexSpace" type="TextureRect" parent="UI/HintPC/TextureRect"]
+self_modulate = Color( 1, 1, 1, 0.701961 )
+margin_left = 4.0
+margin_top = 101.0
+margin_right = 125.0
+margin_bottom = 199.0
+rect_scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 28 )
+expand = true
+
+[node name="Shapes" parent="." instance=ExtResource( 6 )]
+
+[node name="Characters" parent="." instance=ExtResource( 47 )]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.883316, -0.0986725, 0.458276, 0, 0.977596, 0.210489, -0.468778, 0.185928, -0.863526, 14.5562, 9.21996, -32.046 )
+
+[node name="AnimationPlayerCamera" type="AnimationPlayer" parent="Camera"]
+anims/RESET = SubResource( 27 )
+anims/victory = SubResource( 26 )
+anims/welcome = SubResource( 19 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 52 )
+bus = "Dialog"
+
+[node name="AudioDialog" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 51 )
+bus = "Dialog"
+
+[node name="AudioStudion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 44 )
+bus = "Effects"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/goal_enemy = SubResource( 23 )
+anims/goal_friend = SubResource( 22 )
+anims/victory_enemy = SubResource( 24 )
+anims/victory_friend = SubResource( 25 )
+
+[node name="TimerHintMobile" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="trap_ball" from="TrapBallPlayer" to="." method="_on_TrapBall_trap_ball"]
+[connection signal="untrap_ball" from="TrapBallPlayer" to="." method="_on_TrapBallPlayer_untrap_ball"]
+[connection signal="trap_ball" from="GoalKeepers/goalkeeper_friend" to="." method="_on_goalkeeper_trap_ball"]
+[connection signal="untrap_ball" from="GoalKeepers/goalkeeper_friend" to="." method="_on_goalkeeper_untrap_ball"]
+[connection signal="trap_ball" from="GoalKeepers/goalkeeper_enemy" to="." method="_on_goalkeeper_trap_ball"]
+[connection signal="untrap_ball" from="GoalKeepers/goalkeeper_enemy" to="." method="_on_goalkeeper_untrap_ball"]
+[connection signal="goal" from="Gates/GateFriend" to="." method="_on_GateFriend_goal"]
+[connection signal="goal" from="Gates/GateEnemy" to="." method="_on_GateEnemy_goal"]
+[connection signal="body_entered" from="Gates/AreaAllocationBallFriend" to="." method="_on_AreaAllocationBallFriend_body_entered"]
+[connection signal="body_exited" from="Gates/AreaAllocationBallFriend" to="." method="_on_AreaAllocationBallFriend_body_exited"]
+[connection signal="body_entered" from="Gates/AreaAllocationBallEnemy" to="." method="_on_AreaAllocationBallEnemy_body_entered"]
+[connection signal="body_exited" from="Gates/AreaAllocationBallEnemy" to="." method="_on_AreaAllocationBallEnemy_body_exited"]
+[connection signal="body_entered" from="AreaDialog" to="." method="_on_AreaDialog_body_entered"]
+[connection signal="input_event" from="UI/AreaHintMobile/Area2D" to="." method="_on_Area2D_input_event"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="timeout" from="TimerHintMobile" to="." method="_on_TimerHintMobile_timeout"]

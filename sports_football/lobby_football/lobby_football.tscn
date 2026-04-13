@@ -1,0 +1,437 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://content/Enemy/area_enemy_trigger.tscn" type="PackedScene" id=1]
+[ext_resource path="res://content/houses/sports_football/lobby_football/lobby_football.gd" type="Script" id=2]
+[ext_resource path="res://resources/ui/Fonts/FedraserifaproBold.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://resources/shaders/vertical_radiance.gdshader" type="Shader" id=4]
+[ext_resource path="res://content/houses/sports_football/lobby_football/sport_room_lobby.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resources/materials/unshaded/blue_unshaded.material" type="Material" id=6]
+[ext_resource path="res://resources/materials/unshaded/red_unshaded.material" type="Material" id=7]
+[ext_resource path="res://resources/models/kenney_platformer_kit/Textures/colormap.png" type="Texture" id=8]
+[ext_resource path="res://resources/models/assets_v2/sport/star_light_Light.mesh" type="ArrayMesh" id=10]
+[ext_resource path="res://resources/models/assets_v2/sport/star_light_Star.mesh" type="ArrayMesh" id=11]
+
+[sub_resource type="CylinderMesh" id=17]
+top_radius = 1.9
+bottom_radius = 1.9
+height = 0.5
+radial_segments = 16
+
+[sub_resource type="Gradient" id=14]
+offsets = PoolRealArray( 0, 0.301075, 0.989247 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.996078, 0.501961, 1, 0.517647, 0.996078, 0.501961, 1, 0.517647 )
+
+[sub_resource type="GradientTexture" id=13]
+gradient = SubResource( 14 )
+width = 128
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = ExtResource( 4 )
+shader_param/offset = 0.5
+shader_param/fade = 0.1
+shader_param/gradient = SubResource( 13 )
+
+[sub_resource type="GradientTexture" id=15]
+gradient = SubResource( 14 )
+width = 128
+
+[sub_resource type="ShaderMaterial" id=16]
+shader = ExtResource( 4 )
+shader_param/offset = 0.5
+shader_param/fade = 0.1
+shader_param/gradient = SubResource( 15 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("cilinder:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("cilinder:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/path = NodePath("cilinder:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -5, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("cilinder:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "play"
+
+[sub_resource type="Animation" id=7]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/path = NodePath("cilinder:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -5, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("cilinder:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="DynamicFont" id=18]
+size = 400
+outline_size = 10
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("LabelStartCenter:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "play"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("LabelStartCenter:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1.5, 1.5, 1.5 ) ]
+}
+
+[sub_resource type="SpatialMaterial" id=21]
+flags_unshaded = true
+params_diffuse_mode = 4
+params_specular_mode = 3
+params_billboard_keep_scale = true
+albedo_texture = ExtResource( 8 )
+
+[sub_resource type="Animation" id=22]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 90, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../Star/Mesh:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -75, 90, -90 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "play"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 90, 0, 0 ), Vector3( 90, 360, 0 ) ]
+}
+
+[sub_resource type="SpatialMaterial" id=24]
+flags_unshaded = true
+albedo_texture = ExtResource( 8 )
+
+[sub_resource type="Animation" id=25]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mesh:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mesh:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -75, 90, -90 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "play"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mesh:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -1.02626, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mesh:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -75, 90, -90 ), Vector3( -75, 450, -90 ) ]
+}
+
+[node name="LobbyFootball" type="Spatial"]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="LOD" type="LOD" parent="."]
+
+[node name="0" type="Spatial" parent="LOD"]
+lod_range = 20.0
+
+[node name="Decoration" type="Spatial" parent="LOD/0"]
+
+[node name="SportRoomLobby" parent="LOD/0/Decoration" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="MeshRed" type="MeshInstance" parent="LOD/0/Decoration"]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 5.03227, -0.190067, 5.06401 )
+mesh = SubResource( 17 )
+material/0 = ExtResource( 7 )
+
+[node name="MeshBlue" type="MeshInstance" parent="LOD/0/Decoration"]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -5.06606, -0.190067, 5.06401 )
+mesh = SubResource( 17 )
+material/0 = ExtResource( 6 )
+
+[node name="Triggers" type="Spatial" parent="LOD/0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.43823 )
+
+[node name="AreaEnteredTriggerRed" parent="LOD/0/Triggers" instance=ExtResource( 1 )]
+transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 3, 5.01292, 0, -1.378 )
+
+[node name="Cylinder" parent="LOD/0/Triggers/AreaEnteredTriggerRed/cilinder" index="0"]
+material_override = SubResource( 11 )
+
+[node name="Spatial" parent="LOD/0/Triggers/AreaEnteredTriggerRed/cilinder" index="1"]
+visible = false
+
+[node name="DialogCenter" parent="LOD/0/Triggers/AreaEnteredTriggerRed" index="3"]
+visible = false
+
+[node name="AreaEnteredTriggerBlue" parent="LOD/0/Triggers" instance=ExtResource( 1 )]
+transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 3, -5.06019, 0, -1.378 )
+
+[node name="Cylinder" parent="LOD/0/Triggers/AreaEnteredTriggerBlue/cilinder" index="0"]
+material_override = SubResource( 16 )
+
+[node name="Spatial" parent="LOD/0/Triggers/AreaEnteredTriggerBlue/cilinder" index="1"]
+visible = false
+
+[node name="AnimationPlayer" parent="LOD/0/Triggers/AreaEnteredTriggerBlue" index="2"]
+anims/RESET = SubResource( 4 )
+anims/hide = SubResource( 5 )
+anims/play = SubResource( 6 )
+anims/show = SubResource( 7 )
+
+[node name="DialogCenter" parent="LOD/0/Triggers/AreaEnteredTriggerBlue" index="3"]
+visible = false
+
+[node name="TimerLobby" type="Spatial" parent="LOD/0"]
+unique_name_in_owner = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.92057, 9.24485 )
+
+[node name="LabelTimer" type="Label3D" parent="LOD/0/TimerLobby"]
+unique_name_in_owner = true
+transform = Transform( -0.495265, 0, -7.47829e-08, 0, 0.495265, 0, 7.47829e-08, 0, -0.495265, 9.2252e-08, -0.571221, 0.610957 )
+modulate = Color( 1, 0.988235, 0.247059, 1 )
+outline_modulate = Color( 0.92549, 0.501961, 0.25098, 1 )
+text = "20s"
+font = SubResource( 18 )
+
+[node name="LabelStartCenter" type="Spatial" parent="LOD/0/TimerLobby"]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 9.2252e-08, 0.819875, 0.610957 )
+
+[node name="LabelStart" type="Label3D" parent="LOD/0/TimerLobby/LabelStartCenter"]
+transform = Transform( 0.252491, 0, 3.55271e-15, 0, 0.252491, 0, -3.55271e-15, 0, 0.252491, 0, 0, 0 )
+modulate = Color( 1, 0.988235, 0.247059, 1 )
+outline_modulate = Color( 0.92549, 0.501961, 0.25098, 1 )
+text = "START"
+font = SubResource( 18 )
+
+[node name="AnimLabelStart" type="AnimationPlayer" parent="LOD/0/TimerLobby"]
+autoplay = "play"
+anims/RESET = SubResource( 19 )
+anims/play = SubResource( 20 )
+
+[node name="Light" type="Spatial" parent="LOD/0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.92229, 4.57145, 4.74668 )
+
+[node name="Mesh" type="MeshInstance" parent="LOD/0/Light"]
+transform = Transform( 1.696, 0, 0, 0, -1.70387e-07, -1.696, 0, 3.898, -7.41345e-08, 0, 0, 0 )
+mesh = ExtResource( 10 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 21 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LOD/0/Light/Mesh"]
+autoplay = "play"
+anims/RESET = SubResource( 22 )
+anims/play = SubResource( 23 )
+
+[node name="Star" type="Spatial" parent="LOD/0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00536, 4.7455, 4.77532 )
+
+[node name="Mesh" type="MeshInstance" parent="LOD/0/Star"]
+transform = Transform( 1.47497, -2.27436e-09, 0.395217, -0.395217, -1.72755e-08, 1.47497, 2.27436e-09, -1.527, -1.72755e-08, 0, 0, 0 )
+mesh = ExtResource( 11 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 24 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LOD/0/Star/Mesh"]
+root_node = NodePath("../..")
+autoplay = "play"
+anims/RESET = SubResource( 25 )
+anims/play = SubResource( 26 )
+
+[node name="1" type="Spatial" parent="LOD"]
+visible = false
+
+[node name="NetworkPlayers" type="Spatial" parent="."]
+unique_name_in_owner = true
+
+[node name="TeamMarks" type="Spatial" parent="."]
+unique_name_in_owner = true
+
+[node name="PosStart" type="Position3D" parent="."]
+unique_name_in_owner = true
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.618964, -3.99739 )
+
+[node name="PosSpawnLevel" type="Position3D" parent="."]
+unique_name_in_owner = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 34.7237, 0 )
+
+[connection signal="body_entered" from="LOD/0/Triggers/AreaEnteredTriggerRed" to="." method="_on_AreaEnteredTriggerRed_body_entered"]
+[connection signal="body_entered" from="LOD/0/Triggers/AreaEnteredTriggerBlue" to="." method="_on_AreaEnteredTriggerBlue_body_entered"]
+
+[editable path="LOD/0/Triggers/AreaEnteredTriggerRed"]
+[editable path="LOD/0/Triggers/AreaEnteredTriggerRed/cilinder"]
+[editable path="LOD/0/Triggers/AreaEnteredTriggerBlue"]
+[editable path="LOD/0/Triggers/AreaEnteredTriggerBlue/cilinder"]

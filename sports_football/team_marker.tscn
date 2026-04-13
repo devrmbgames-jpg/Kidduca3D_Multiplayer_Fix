@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://content/houses/sports_football/team_marker.gd" type="Script" id=3]
+
+[sub_resource type="TorusMesh" id=1]
+inner_radius = 0.836
+rings = 16
+ring_segments = 4
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_name = "Gold"
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+albedo_color = Color( 1, 0.905882, 0.133333, 1 )
+
+[sub_resource type="PrismMesh" id=2]
+size = Vector3( 0.495, 0.487, 0.073 )
+
+[node name="TeamMarker" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="SpriteMarker" type="Sprite3D" parent="."]
+transform = Transform( 2.76, 0, 0, 0, 0.612, 0, 0, 0, 1, 0, 4.236, 0 )
+billboard = 1
+
+[node name="TimerUpdateNetwork" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="CursorMarker" type="MeshInstance" parent="."]
+unique_name_in_owner = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125072, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+
+[node name="Cur" type="MeshInstance" parent="CursorMarker"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -5.96046e-08, -1.31601 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[connection signal="timeout" from="TimerUpdateNetwork" to="." method="_on_TimerUpdateNetwork_timeout"]

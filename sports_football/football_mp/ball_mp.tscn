@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://content/houses/sports_football/football_mp/ball_mp.gd" type="Script" id=1]
+[ext_resource path="res://resources/models/houses/sports/football_ball.mesh" type="ArrayMesh" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.8
+bounce = 0.5
+
+[sub_resource type="SphereShape" id=19]
+radius = 0.6
+
+[sub_resource type="SpatialMaterial" id=18]
+albedo_color = Color( 0.717647, 0.784314, 0.52549, 1 )
+metallic = 0.24
+metallic_specular = 0.14
+
+[sub_resource type="SphereMesh" id=20]
+material = SubResource( 18 )
+radius = 0.6
+height = 1.2
+
+[sub_resource type="SphereShape" id=21]
+radius = 0.6
+
+[node name="BallMP" type="RigidBody" groups=["MP_FOOTBALL_BALL"]]
+collision_layer = 57345
+collision_mask = 57345
+mass = 0.1
+physics_material_override = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 20 )
+
+[node name="football_ball" type="MeshInstance" parent="."]
+transform = Transform( 0.615362, 0, 0, 0, 0.615362, 0, 0, 0, 0.615362, 0, 0, 0 )
+mesh = ExtResource( 2 )
+
+[node name="AreaBall" type="Area" parent="."]
+collision_layer = 8192
+collision_mask = 8192
+monitorable = false
+
+[node name="CollisionShape2" type="CollisionShape" parent="AreaBall"]
+shape = SubResource( 21 )
+
+[node name="TimerNetworkUpdate" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="TimerNetworkUpdate" to="." method="_on_TimerNetworkUpdate_timeout"]

@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/models/other/ring.mesh" type="ArrayMesh" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "play"
+length = 10.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ring:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 90 ), Vector3( 180, 0, 90 ), Vector3( 360, 0, 90 ) ]
+}
+
+[node name="Direction" type="Spatial"]
+
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.997668, 0 )
+
+[node name="ring" type="MeshInstance" parent="Spatial"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
+mesh = ExtResource( 1 )
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spatial"]
+autoplay = "play"
+anims/play = SubResource( 1 )

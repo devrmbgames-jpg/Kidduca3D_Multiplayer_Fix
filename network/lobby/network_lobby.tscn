@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://content/network/lobby/network_lobby.gd" type="Script" id=1]
+
+[node name="NetworkLobby" type="Node"]
+script = ExtResource( 1 )
+
+[node name="TimerCheckStartRace" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="TimerCheckDisconectPeers" type="Timer" parent="."]
+
+[node name="TimersDelNetworkPeer" type="Node" parent="."]
+
+[node name="PeersLobby" type="Node" parent="."]
+
+[connection signal="timeout" from="TimerCheckStartRace" to="." method="_on_TimerCheckStartRace_timeout"]
+[connection signal="timeout" from="TimerCheckDisconectPeers" to="." method="_on_TimerCheckDisconectPeers_timeout"]

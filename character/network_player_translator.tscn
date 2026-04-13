@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://content/character/network_player_translator.gd" type="Script" id=1]
+
+[node name="NetworkPlayerTranslator" type="Node"]
+script = ExtResource( 1 )
+
+[node name="TimerUpdateNetwork" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerUpdateNetwork" to="." method="_on_TimerUpdateNetwork_timeout"]
